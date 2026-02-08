@@ -4,6 +4,16 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@layer utilities {
+    .flex-center {
+        @apply flex justify-center items-center;
+    }
+
+    .flex-between {
+        @apply flex justify-between items-center;
+    }
+}
+
 @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
@@ -47,8 +57,11 @@
     --radius-4xl: calc(var(--radius) + 16px);
 
     /* Custom Colors */
-    --color-dark-1: var(--dark-1);
-    --color-dark-2: var(--dark-2);
+
+    --color-dark-1: #1c1f2e;
+    --color-dark-2: #161925;
+
+    --color-blue-1: oklch(0.5952 0.2116 257.77);
 }
 
 :root {
@@ -84,11 +97,6 @@
     --sidebar-accent-foreground: oklch(0.205 0 0);
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.708 0 0);
-
-    /* Custom Colors */
-
-    --dark-1: #1c1f2e;
-    --dark-2: #161925;
 }
 
 .dark {
@@ -123,11 +131,6 @@
     --sidebar-accent-foreground: oklch(0.985 0 0);
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.556 0 0);
-
-    /* Custom Colors */
-
-    --dark-1: #1c1f2e;
-    --dark-2: #161925;
 }
 
 @layer base {
