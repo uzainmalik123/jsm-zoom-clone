@@ -1,13 +1,9 @@
+'use client'
+
 import {MeetingModalProps} from "@/types";
 import {
     Dialog,
-    DialogClose,
     DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
 } from "@/components/ui/dialog"
 import Image from "next/image";
 import {cn} from "@/lib/utils";

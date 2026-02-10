@@ -30,7 +30,7 @@ const MeetingTypeList = () => {
                 setMeetingState('isJoiningMeeting');
                 break
             case 3:
-                setMeetingState('isInstantMeeting');
+                setMeetingState('isScheduleMeeting');
                 break;
             case 4:
                 setMeetingState(undefined);
@@ -48,7 +48,6 @@ const MeetingTypeList = () => {
                 toast.error('Please select a data and time');
                 return
             }
-            toast.error('Failed to create meeting');
 
             const id = crypto.randomUUID()
             const call = client.call('default', id)
@@ -80,8 +79,6 @@ const MeetingTypeList = () => {
             toast.error('Failed to create meeting');
         }
     }
-
-    console.log(meetingState)
 
     return (
         <section className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">

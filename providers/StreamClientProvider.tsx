@@ -1,6 +1,6 @@
 'use client'
 
-import {ReactNode, useEffect, useState} from "react";
+import {ReactNode, useEffect, useMemo, useState} from "react";
 import {
     StreamCall,
     StreamVideo, StreamVideoClient,
@@ -12,14 +12,13 @@ import LoaderComp from "@/components/LoaderComp";
 const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY;
 
 const StreamVideoProvider = ({children}: { children: ReactNode }) => {
-    const [videoClient, setVideoClient] = useState<StreamVideoClient>()
     const {user, isLoaded} = useUser()
 
-    useEffect(() => {
+    const videoClient = useMemo(() => {
         if (!isLoaded || !user) return;
         if (!apiKey) throw new Error("Stream API key missing")
 
-        const client = new StreamVideoClient({
+        return new StreamVideoClient({
             apiKey,
             user: {
                 id: user?.id,
@@ -29,8 +28,17 @@ const StreamVideoProvider = ({children}: { children: ReactNode }) => {
             tokenProvider
         })
 
-        setVideoClient(client)
     }, [user, isLoaded])
+
+    useEffect(() => {
+        return () => {
+            if (videoClient) {
+                videoClient.disconnectUser().catch((error) => {
+                    console.error('Error disconnecting stream user: ', error)
+                })
+            }
+        }
+    }, [videoClient])
 
     if(!videoClient) return <LoaderComp />
 

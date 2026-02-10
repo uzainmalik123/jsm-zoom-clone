@@ -1,8 +1,7 @@
 import MeetingTypeList from "@/components/MeetingTypeList";
 
 const Home = () => {
-    const time = Date.now();
-    const date = new Date().getTime();
+    const now = new Date();
 
     const timeString = Intl.DateTimeFormat('en-US', {
         hour: 'numeric',
@@ -10,7 +9,7 @@ const Home = () => {
         hour12: true
     });
 
-    const formattedTime = timeString.format(date);
+    const formattedTime = timeString.format(now);
 
     const dateFormatter = Intl.DateTimeFormat('en-US', {
         weekday: 'long',
@@ -19,7 +18,7 @@ const Home = () => {
         year: 'numeric',
     })
 
-    const formattedDate = dateFormatter.format(date);
+    const formattedDate = dateFormatter.format(now);
 
     return (
         <section className="flex size-full flex-col gap-8 text-white">
