@@ -13,7 +13,7 @@ const HomeCard = ({handleClick, id, CardIcon, cardLabel, cardDescription, cardCo
                 <CardIcon/>
             </div>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col items-start gap-2">
                 <h1 className="text-2xl font-bold">{cardLabel}</h1>
                 <p className="text-lg font-normal">{cardDescription}</p>
             </div>
