@@ -11,15 +11,18 @@ export const useGetCallById = (id: string | string[]) => {
         if (!client) return
 
         const loadCall = async () => {
-            const { calls } = await client.queryCalls({
-                filter_conditions: {
-                    id
-                }
-            })
-
-            if (calls.length > 0) setCall(calls[0])
-
-            setIsCallLoading(false)
+            try {
+                const { calls } = await client.queryCalls({
+                    filter_conditions: {
+                        id
+                    }
+                })
+                if (calls.length > 0) setCall(calls[0])
+            } catch (error) {
+                console.error('Failed to fetch call:', error)
+            } finally {
+                setIsCallLoading(false)
+            }
         }
 
         loadCall()

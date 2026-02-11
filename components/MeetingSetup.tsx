@@ -3,6 +3,7 @@
 import {DeviceSettings, useCall, VideoPreview} from "@stream-io/video-react-sdk";
 import {useEffect, useState} from "react";
 import {Button} from "@/components/ui/button";
+import {toast} from "sonner";
 
 const MeetingSetup = ({setIsSetupComplete}: { setIsSetupComplete: (value: boolean) => void }) => {
     const [isMicCamToggledOn, setIsMicCamToggledOn] = useState(false)
@@ -36,8 +37,13 @@ const MeetingSetup = ({setIsSetupComplete}: { setIsSetupComplete: (value: boolea
                 </label>
                 <DeviceSettings/>
                 <Button className="rounded-md bg-green-500 px-4" onClick={() => {
-                    call?.join()
-                    setIsSetupComplete(true)
+                    try {
+                        await call.join()
+                        setIsSetupComplete(true)
+                    } catch (error) {
+                        console.error('Failed to join call:', error)
+                        toast.error('Failed to join call')
+                    }
                 }}>
                     Join meeting
                 </Button>

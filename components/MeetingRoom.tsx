@@ -26,7 +26,7 @@ import EndCallButton from "@/components/EndCallButton";
 import LoaderComp from "@/components/LoaderComp";
 
 const MeetingRoom = () => {
-    const [layout, setLayout] = useState('speaker-left')
+    const [layout, setLayout] = useState<CallLayoutType>('speaker-left')
     const [showParticipants, setShowParticipants] = useState(false)
     const searchParams = useSearchParams()
     const isPersonalRoom = !!searchParams.get("personal")
@@ -76,7 +76,6 @@ const MeetingRoom = () => {
                                     setLayout(item.toLowerCase() as CallLayoutType)
                                 }>
                                     {item}
-                                    <DropdownMenuSeparator className="border-dark-1"/>
                                 </DropdownMenuItem>
                             </div>
                         ))}

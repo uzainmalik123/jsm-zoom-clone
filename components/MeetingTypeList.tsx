@@ -50,7 +50,7 @@ const MeetingTypeList = () => {
 
         try {
             if (!values.dateTime) {
-                toast.error('Please select a data and time');
+                toast.error('Please select a date and time');
                 return
             }
 
@@ -119,7 +119,9 @@ const MeetingTypeList = () => {
                         <label className="text-base text-normal leading-[22px] text-sky-2">Select Date and Time</label>
                         <DatePicker
                             selected={values.dateTime}
-                            onChange={(date: Date | null) => setValues({...values, dateTime: date!})}
+                            onChange={(date: Date | null) => {
+                                if (date) setValues({...values, dateTime: date})
+                            }}
                             showTimeSelect
                             timeFormat="HH:mm"
                             timeIntervals={15}
@@ -159,7 +161,23 @@ const MeetingTypeList = () => {
                 title="Type the link here"
                 className="text-center"
                 buttonText="Join Meeting"
-                handleClick={() => router.push(values.link)}
+                handleClick={() => {
+                    try {
+                        const url = new URL(values.link, window.location.origin);
+                        if (url.origin === window.location.origin) {
+                            router.push(url.pathname + url.search);
+                        } else {
+                            toast.error('Invalid meeting link');
+                        }
+                    } catch {
+                        // If it's not a valid URL, treat as relative path
+                        if (values.link.startsWith('/')) {
+                            router.push(values.link);
+                        } else {
+                            toast.error('Invalid meeting link');
+                        }
+                    }
+                }}
             >
                 <Input
                     placeholder="Meeting link"

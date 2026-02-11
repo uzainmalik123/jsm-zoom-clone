@@ -45,7 +45,7 @@ const CallList = ({ type }: { type: 'upcoming' | 'ended' | 'recordings' }) => {
     useEffect(() => {
         const fetchRecordings = async () => {
             try {
-                const callData = await Promise.all(callRecordings?.map(meeting => meeting.queryRecordings()))
+                const callData = await Promise.all((callRecordings ?? []).map(meeting => meeting.queryRecordings()))
                 const recordings = callData.filter(call => call.recordings.length > 0).flatMap(call => call.recordings)
 
                 setRecordings(recordings)
@@ -68,7 +68,7 @@ const CallList = ({ type }: { type: 'upcoming' | 'ended' | 'recordings' }) => {
             {calls && calls.length > 0 ? (
                 calls.map((meeting: Call | CallRecording) => (
                     <MeetingCard
-                        key={(meeting as Call)?.id}
+                        key={type === 'recordings' ? meeting.url : (meeting as Call).id}
                         icon={
                             type === 'ended' ? '/icons/previous.svg' : type === 'upcoming' ? '/icons/upcoming.svg' : '/icons/recordings.svg'
                         }

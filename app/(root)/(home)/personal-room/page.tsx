@@ -6,6 +6,7 @@ import {toast} from "sonner";
 import {useGetCallById} from "@/hooks/useGetCallById";
 import {useStreamVideoClient} from "@stream-io/video-react-sdk";
 import {useRouter} from "next/navigation";
+import LoaderComp from "@/components/LoaderComp";
 
 const Table = ({title, description}: {title: string, description: string}) => {
     return (
@@ -17,11 +18,11 @@ const Table = ({title, description}: {title: string, description: string}) => {
 }
 
 const PersonalRoom = () => {
-    const {user} = useUser()
+    const {user, isLoaded} = useUser()
     const meetingId = user?.id
 
     const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${meetingId}?personal=true`
-    const { call } = useGetCallById(meetingId!)
+    const { call, isCallLoading } = useGetCallById(meetingId!)
     const client = useStreamVideoClient()
 
     const router = useRouter()
@@ -40,6 +41,8 @@ const PersonalRoom = () => {
 
         router.push(`/meeting/${meetingId}?personal=true`)
     }
+
+    if (!isLoaded || isCallLoading) return <LoaderComp/>
 
     return (
         <section className="flex size-full flex-col gap-8 text-white">

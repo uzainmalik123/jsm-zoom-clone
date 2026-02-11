@@ -3,6 +3,7 @@
 import {useCall, useCallStateHooks} from "@stream-io/video-react-sdk";
 import {Button} from "@/components/ui/button";
 import {useRouter} from "next/navigation";
+import {toast} from "sonner";
 
 const EndCallButton = () => {
     const call = useCall()
@@ -16,8 +17,13 @@ const EndCallButton = () => {
 
     return (
         <Button onClick={async () => {
-            await call?.endCall()
-            router.push("/")
+            try {
+                await call?.endCall()
+                router.push("/")
+            } catch (error) {
+                console.error('Failed to end call:', error)
+                toast.error('Failed to end call')
+            }
         }} className="bg-red-500">
             End Call for everyone
         </Button>

@@ -16,6 +16,7 @@ const Meeting = () => {
     const { call, isCallLoading } = useGetCallById(id)
 
     if(!isLoaded || isCallLoading) return <LoaderComp />
+    if (!call) return <div className="h-screen w-full">Meeting not found</div>
 
     return (
         <main className="h-screen w-full">
