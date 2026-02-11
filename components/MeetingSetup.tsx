@@ -36,7 +36,7 @@ const MeetingSetup = ({setIsSetupComplete}: { setIsSetupComplete: (value: boolea
                     Join with mic and camera off
                 </label>
                 <DeviceSettings/>
-                <Button className="rounded-md bg-green-500 px-4" onClick={() => {
+                <Button className="rounded-md bg-green-500 px-4" onClick={async () => {
                     try {
                         await call.join()
                         setIsSetupComplete(true)
