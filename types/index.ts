@@ -20,3 +20,16 @@ export type MeetingModalProps = {
     image?: string,
     ButtonIcon?: ElementType,
 }
+
+export type CallLayoutType = 'grid' | 'speaker-left' | 'speaker-right'
+
+export type MeetingCardProps = {
+    title: string;
+    date: string;
+    icon: string;
+    isPreviousMeeting?: boolean;
+    buttonIcon1?: string;
+    buttonText?: string;
+    handleClick: () => void;
+    link: string;
+}
