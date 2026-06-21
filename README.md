@@ -100,7 +100,7 @@ Yoom prioritizes user privacy and data security through a multi-layered approach
 ### 1. Installation
 Clone the repository and install dependencies:
 ```bash
-git clone https://github.com/your-username/jsm-zoom-clone.git
+git clone https://github.com/uzainmalik123/jsm-zoom-clone.git
 cd jsm-zoom-clone
 pnpm install
 ```
@@ -190,9 +190,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## 📧 Contact
 
-**Project Lead**: [Your Name/Handle]
-**Website**: [Your Portfolio/Website]
-**GitHub**: [@your-username](https://github.com/your-username)
+**Project Lead**: Uzain Ahmed
+**Website**: https://github.com/uzainmalik123
+**GitHub**: [@uzainmalik123](https://github.com/your-username)
 
 ---
 *Built with ❤️ by the Yoom Team*
