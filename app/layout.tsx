@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "Yoom",
     description: "Video calling app",
     icons: {
-        icon: '/icons/yoom-logo-cropped.svg',
+        icon: '/icons/favicon.svg',
     }
 };
 
